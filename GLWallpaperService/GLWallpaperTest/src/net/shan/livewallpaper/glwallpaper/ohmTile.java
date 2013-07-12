@@ -49,7 +49,7 @@ public class ohmTile {
 			1.0f, 0.0f,		// bottom right	(V3)
 	};		
 	/** The texture pointer */
-	protected int[] textures = new int[1];
+	protected static int[] textures = new int[1];
 
 	public ohmTile() {
 		// a float has 4 bytes so we allocate for each coordinate 4 bytes
@@ -81,14 +81,14 @@ public class ohmTile {
 	
 	
 	
-	public void loadGLTexture(GL10 gl, Resources resource, int id) {
+	public static void loadGLTexture(GL10 gl, Resources resource, int id) {
 		// loading texture
 		Bitmap bitmap = BitmapFactory.decodeResource(resource,id);
 		loadGLTexture(gl,bitmap);
 		bitmap.recycle();
 	}
 	
-	public void loadGLTexture(GL10 gl,Bitmap bitmap) {
+	private static void loadGLTexture(GL10 gl,Bitmap bitmap) {
 		
 		//Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),
 			//	R.drawable.android1);
@@ -155,7 +155,7 @@ public class ohmTile {
 	}
 	
 		
-	public void release(GL10 gl){
+	public static void release(GL10 gl){
 		gl.glDeleteTextures(1, textures, 0);
 		Log.d("DEBUG","released");
 	}
@@ -176,7 +176,7 @@ public class ohmTile {
 			if(m_transparency<0)
 			{
 				m_transparency = 1;
-				m_depth = -70;
+				m_depth = -100  - (int)(Math.random() * ((50 - 0)));;
 			}
 		
 		}
