@@ -33,6 +33,7 @@ public class MyWallpaperService extends GLWallpaperService {
 		
 		
 		private NewRenderer renderer;
+		private ohmRenderer	rendererOhm;
 		public MyEngine() {
 			super();
 			// handle prefs, other initialization
@@ -40,7 +41,8 @@ public class MyWallpaperService extends GLWallpaperService {
 			
 			Log.d("*#DEBUG","*#DEBUG new renderer");
 			renderer = new NewRenderer(getResources(),getApplicationContext());
-			setRenderer(renderer);
+			rendererOhm = new ohmRenderer(getResources(), getApplicationContext());
+			setRenderer(rendererOhm);
 			setRenderMode(RENDERMODE_CONTINUOUSLY);
 			
 			mPrefs = MyWallpaperService.this.getSharedPreferences(SHARED_PREFS_NAME, 0);
