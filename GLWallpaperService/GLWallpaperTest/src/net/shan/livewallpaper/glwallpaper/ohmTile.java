@@ -28,11 +28,18 @@ public class ohmTile {
 		
 	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	protected float vertices_frontface[] = {
-			-1.5f,  0.0f,  0.0f,		// V1 - bottom left
-			-1.5f,  2.5f,  0.0f,		// V2 - top left
-			 0.0f,  0.0f,  0.0f,		// V3 - bottom right
-			 0.0f,  2.5f,  0.0f,		// V4 - top right
+			-1.0f,  -1.0f,  0.0f,		// V1 - bottom left
+			-1.0f,  1.0f,  0.0f,		// V2 - top left
+			 1.0f,  -1.0f,  0.0f,		// V3 - bottom right
+			 1.0f,  1.0f,  0.0f,		// V4 - top right
 	};
+	
+//	protected float vertices_frontface[] = {
+//			-1.5f,  0.0f,  0.0f,		// V1 - bottom left
+//			-1.5f,  2.5f,  0.0f,		// V2 - top left
+//			 0.0f,  0.0f,  0.0f,		// V3 - bottom right
+//			 0.0f,  2.5f,  0.0f,		// V4 - top right
+//	};
 	
 	protected float vertices_rightface[] = {
 			 0.0f,  0.0f,  0.0f,		// V1 - bottom left
@@ -129,48 +136,8 @@ public class ohmTile {
 		
 		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
 		
-		m_imageW = bitmap.getWidth();
-		m_imageH = bitmap.getHeight();		
-		
-		// Clean up
-		
-		
 		bitmap.recycle();
 	}
-	
-	public void loadGLTexture(GL10 gl,Bitmap bitmap, int index) {
-		
-		//Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),
-			//	R.drawable.android1);
-		if(index > 1 || index < 0)
-			return;
-		// generate one texture pointer
-		//gl.glGenTextures(1, textures, 0);
-		
-		// ...and bind it to our array
-		gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[index]);
-		
-		// create nearest filtered texture
-		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
-		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
-
-		//Different possible texture parameters, e.g. GL10.GL_CLAMP_TO_EDGE
-//		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);
-//		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_REPEAT);
-		
-		// Use Android GLUtils to specify a two-dimensional texture image from our bitmap
-		
-		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
-		
-		m_imageW = bitmap.getWidth();
-		m_imageH = bitmap.getHeight();		
-		
-		// Clean up
-		
-		
-		bitmap.recycle();
-	}
-
 	
 	public void drawImage(GL10 gl){
 		
@@ -181,10 +148,10 @@ public class ohmTile {
 		{
 			
 			
-			gl.glTranslatef(-1.5f/2,2.5f/2,0f);
-			gl.glScalef(0.97f, 0.97f, 0f);
-			gl.glRotatef(0, 0, 1, 0);
-			gl.glTranslatef(1.5f/2,-2.5f/2f,0f);
+//			gl.glTranslatef(-1.5f/2,2.5f/2,0f);
+//			gl.glScalef(0.97f, 0.97f, 0f);
+//			gl.glRotatef(0, 0, 1, 0);
+//			gl.glTranslatef(1.5f/2,-2.5f/2f,0f);
 			
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
 			vertexBuffer.put(vertices_frontface);

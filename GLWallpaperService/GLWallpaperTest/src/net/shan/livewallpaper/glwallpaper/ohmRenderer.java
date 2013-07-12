@@ -108,40 +108,8 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		gl.glMatrixMode(GL10.GL_MODELVIEW); 	//Select The Modelview Matrix
 		gl.glLoadIdentity(); 					//Reset The Modelview Matrix
 	}
-    public void loadImage(GL10 gl,Bitmap bitmap,int index){
-    	
-    	 
-         bitmap.recycle();
-    }
-	
-	
-	private Bitmap ShrinkBitmap(String file, int width, int height){
-		  
-	     BitmapFactory.Options bmpFactoryOptions = new BitmapFactory.Options();
-	        bmpFactoryOptions.inJustDecodeBounds = true;
-	        Bitmap bitmap = BitmapFactory.decodeFile(file, bmpFactoryOptions);
-	        
-	        int heightRatio = (int)Math.ceil(bmpFactoryOptions.outHeight/(float)height);
-	        int widthRatio = (int)Math.ceil(bmpFactoryOptions.outWidth/(float)width);
-	        
-	        if (heightRatio > 1 || widthRatio > 1)
-	        {
-	         if (heightRatio > widthRatio)
-	         {
-	          bmpFactoryOptions.inSampleSize = heightRatio;
-	         } else {
-	          bmpFactoryOptions.inSampleSize = widthRatio; 
-	         }
-	        }
-	        
-	        bmpFactoryOptions.inJustDecodeBounds = false;
-	        bitmap = BitmapFactory.decodeFile(file, bmpFactoryOptions);
-	     return bitmap;
-	     
-	    }
-	
-	
-	
+    
+		
 	@Override
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 		// Load the texture for the square
