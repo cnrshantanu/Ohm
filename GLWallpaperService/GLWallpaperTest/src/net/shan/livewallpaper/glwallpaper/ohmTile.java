@@ -16,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 
 /**
  * @author impaler
@@ -23,9 +24,7 @@ import android.view.Display;
  */
 public class ohmTile {
 	
-	protected static float m_imageW 		= 40;
-	protected static float m_imageH 		= 30;
-		
+	protected float m_depth = 0,m_transparency = 1f,m_x = 0;;	
 	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	protected float vertices_frontface[] = {
 			-1.0f,  -1.0f,  0.0f,		// V1 - bottom left
@@ -34,33 +33,13 @@ public class ohmTile {
 			 1.0f,  1.0f,  0.0f,		// V4 - top right
 	};
 	
-//	protected float vertices_frontface[] = {
-//			-1.5f,  0.0f,  0.0f,		// V1 - bottom left
-//			-1.5f,  2.5f,  0.0f,		// V2 - top left
-//			 0.0f,  0.0f,  0.0f,		// V3 - bottom right
-//			 0.0f,  2.5f,  0.0f,		// V4 - top right
-//	};
-	
-	protected float vertices_rightface[] = {
-			 0.0f,  0.0f,  0.0f,		// V1 - bottom left
-			 0.0f,  2.5f,  0.0f,		// V2 - top left
-			 0.0f,  0.0f, -0.2f,		// V3 - bottom right
-			 0.0f,  2.5f, -0.2f,		// V4 - top right
-	};	
-	protected float vertices_backface[] = {
-			 0.0f, 0.0f,  -0.2f,		// V1 - bottom left
-			 0.0f, 2.5f,  -0.2f,		// V2 - top left
-			-1.5f, 0.0f,  -0.2f,		// V3 - bottom right
-			-1.5f, 2.5f,  -0.2f,		// V4 - top right
+	protected float color[] = {
+			1.0f,  1.0f,  1.0f,1.0f,		// V1 - bottom left
+			1.0f,  1.0f,  1.0f,1.0f,		// V1 - bottom left
+			1.0f,  1.0f,  1.0f,1.0f,		// V1 - bottom left
+			1.0f,  1.0f,  1.0f,1.0f,		// V1 - bottom left
 	};
 	
-	protected float vertices_leftface[] = {
-			-1.5f, 0.0f,  -0.2f,		// V3 - bottom right
-			-1.5f, 2.5f,  -0.2f,		// V4 - top right
-			-1.5f, 0.0f,   0.0f,		// V1 - bottom left
-			-1.5f, 2.5f,   0.0f,		// V2 - top left
-	};		
-			 
 	protected FloatBuffer textureBuffer;	// buffer holding the texture coordinates
 	protected float texture[] = {    		
 			// Mapping coordinates for the vertices
@@ -102,10 +81,6 @@ public class ohmTile {
 	
 	
 	
-	public static void setDimension(int width,int height){
-		m_imageW = width/2.f;
-		m_imageH = height/2.f;
-	}
 	public void loadGLTexture(GL10 gl, Resources resource, int id) {
 		// loading texture
 		Bitmap bitmap = BitmapFactory.decodeResource(resource,id);
@@ -153,9 +128,11 @@ public class ohmTile {
 //			gl.glRotatef(0, 0, 1, 0);
 //			gl.glTranslatef(1.5f/2,-2.5f/2f,0f);
 			
+			gl.glTranslatef(m_x,0f,m_depth);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
 			vertexBuffer.put(vertices_frontface);
 			vertexBuffer.position(0);
+			gl.glColor4f(1f, 1f, 1f,m_transparency);
 			gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, vertices_frontface.length / 3);
 			
 		}
@@ -167,22 +144,14 @@ public class ohmTile {
 	}
 	/** The draw method for the square with the GL context */
 	public void draw(GL10 gl) {
-		// bind the previously generated texture
-		
-		///x-= 0.0002;
-			
-		// Point to our buffers
+	
 		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 		
-		// Set the face rotation
 		gl.glFrontFace(GL10.GL_CW);
 		
-		// Point to our vertex buffer
-				
-		// Draw the vertices as triangle strip
 		drawImage(gl);
-		//Disable the client state before leaving
+	
 	}
 	
 		
@@ -191,9 +160,30 @@ public class ohmTile {
 		Log.d("DEBUG","released");
 	}
 	
+	public void onTouchEvent(MotionEvent event) {
+		
+		m_depth -= 0.6;
+	
+	}
 	public void update(){
 		
-		// for rotation
+		
+		
+		if (m_depth >= -1){
+			
+			m_depth += 0.15;
+			m_transparency -= 0.05;//temp;
+			if(m_transparency<0)
+			{
+				m_transparency = 1;
+				m_depth = -70;
+			}
+		
+		}
+		else {
+			m_depth += 0.3;
+		}
+		
 		
 			
 	}

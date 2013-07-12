@@ -3,14 +3,8 @@ int array Ttl_description 0x7f060001
 int array Ttl_values 0x7f060000
 int array wallpaper_folders 0x7f060002
 int drawable app_image 0x7f020000
-int drawable app_notes 0x7f020001
-int drawable ic_menu_compose 0x7f020002
-int drawable ic_menu_delete 0x7f020003
-int drawable ic_menu_edit 0x7f020004
-int drawable ic_menu_revert 0x7f020005
-int drawable ic_menu_save 0x7f020006
-int drawable icon 0x7f020007
-int drawable live_folder_notes 0x7f020008
+int drawable icon 0x7f020001
+int drawable ohm 0x7f020002
 int layout main 0x7f030000
 int string TTL_summary 0x7f050006
 int string TTL_title 0x7f050005
