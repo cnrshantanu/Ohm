@@ -32,7 +32,7 @@ public class MyWallpaperService extends GLWallpaperService {
 		private String imagePath = "/football/";
 		
 		
-		private NewRenderer renderer;
+		
 		private ohmRenderer	rendererOhm;
 		public MyEngine() {
 			super();
@@ -40,7 +40,6 @@ public class MyWallpaperService extends GLWallpaperService {
 			//renderer = new MyRenderer();
 			
 			Log.d("*#DEBUG","*#DEBUG new renderer");
-			renderer = new NewRenderer(getResources(),getApplicationContext());
 			rendererOhm = new ohmRenderer(getResources(), getApplicationContext());
 			setRenderer(rendererOhm);
 			setRenderMode(RENDERMODE_CONTINUOUSLY);
@@ -60,8 +59,6 @@ public class MyWallpaperService extends GLWallpaperService {
 		@Override
 		public void onSurfaceCreated(SurfaceHolder holder) {
 			Log.d("*#DEBUG","*#DEBUG surface created in service");
-			renderer.setTTLMax(C_TTL_MAX);
-			renderer.setSourceFolder(imagePath);
 			super.onSurfaceCreated(holder);
 			//renderer.release();
 		}
@@ -69,17 +66,11 @@ public class MyWallpaperService extends GLWallpaperService {
 		public void onVisibilityChanged(boolean visible) {
 			Log.d("*#DEBUG","*#DEBUG surface resumed");
 			//renderer.release();
-			renderer.setTTLMax(C_TTL_MAX);
-			renderer.setSourceFolder(imagePath);
 			super.onVisibilityChanged(visible);
 		} 
 		
 		public void onDestroy() {
 			super.onDestroy();
-			if (renderer != null) {
-				//renderer.release(); // assuming yours has this method - it should!
-			}
-			renderer = null;
 		}
 
 		@Override
