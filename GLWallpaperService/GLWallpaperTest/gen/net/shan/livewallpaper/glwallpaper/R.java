@@ -27,9 +27,6 @@ public final class R {
         public static final int icon=0x7f020007;
         public static final int live_folder_notes=0x7f020008;
     }
-    public static final class id {
-        public static final int path=0x7f070000;
-    }
     public static final class layout {
         public static final int main=0x7f030000;
     }
@@ -63,6 +60,5 @@ public final class R {
     }
     public static final class xml {
         public static final int glwallpapertest=0x7f040000;
-        public static final int glwallpapertest_setting=0x7f040001;
     }
 }

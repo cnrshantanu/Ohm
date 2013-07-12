@@ -11,7 +11,6 @@ int drawable ic_menu_revert 0x7f020005
 int drawable ic_menu_save 0x7f020006
 int drawable icon 0x7f020007
 int drawable live_folder_notes 0x7f020008
-int id path 0x7f070000
 int layout main 0x7f030000
 int string TTL_summary 0x7f050006
 int string TTL_title 0x7f050005
@@ -40,4 +39,3 @@ int string title_edit_title 0x7f050008
 int string title_notes_list 0x7f05000b
 int string wall_settings 0x7f050004
 int xml glwallpapertest 0x7f040000
-int xml glwallpapertest_setting 0x7f040001

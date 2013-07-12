@@ -18,17 +18,10 @@
 					<action android:name="android.service.wallpaper.WallpaperService" />
 				</intent-filter>
 					<meta-data android:name="android.service.wallpaper"
-				android:resource="@xml/glwallpapertest" />
+							   android:resource="@xml/glwallpapertest"/>
 		</service>
 
-		<activity
-			android:label="@string/wall_settings"
-            android:name="net.shan.livewallpaper.glwallpaper.LiveWallpaperSettings"
-            android:theme="@android:style/Theme.Light.WallpaperSettings"
-            android:exported="true">
-			>
-		</activity>
-		
+				
 		  </application>
     
 	
