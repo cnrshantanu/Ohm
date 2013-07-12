@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+     android:title="@string/wall_settings"
+     android:key="LiveWallpaper_settings">
+     <ListPreference
+            android:key="LiveWallpaper_TTL"
+            android:title="@string/TTL_title"
+            android:summary="@string/TTL_summary"
+            android:entries="@array/Ttl_description"
+            android:entryValues="@array/Ttl_values" />
+     
+     <ListPreference 
+         		android:key="Folderpath" 
+         		android:title="Folder"
+                android:id="@+id/path"
+                android:summary="The folder containing images" 
+                android:entries="@array/Folder_description"
+                android:entryValues="@array/wallpaper_folders"
+                android:defaultValue="/football/"/>
+     			     
+     
+</PreferenceScreen>
+
