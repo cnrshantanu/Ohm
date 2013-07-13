@@ -25,6 +25,7 @@ import android.view.MotionEvent;
 public class ohmTile {
 	
 	protected float m_depth = 0,m_transparency = 1f,m_x = 0,m_y = 0;	
+	protected final float C_HAND_X = -8.2f, C_HAND_Y = -1f;
 	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	protected float vertices_frontface[] = {
 			-1.0f,  -1.0f,  0.0f,		// V1 - bottom left
@@ -129,6 +130,10 @@ public class ohmTile {
 	
 	public void drawImage(GL10 gl){
 		
+		float tween_val = (70f+m_depth)/70f;
+		float l_x		= C_HAND_X + ((m_x - C_HAND_X) * tween_val);
+		float l_y		= C_HAND_Y + ((m_y - C_HAND_Y) * tween_val);
+		
 		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, textureBuffer);
 		
@@ -141,7 +146,7 @@ public class ohmTile {
 //			gl.glRotatef(0, 0, 1, 0);
 //			gl.glTranslatef(1.5f/2,-2.5f/2f,0f);
 			gl.glColor4f(1f, 1f, 1f,m_transparency);
-			gl.glTranslatef(m_x,m_y,m_depth);
+			gl.glTranslatef(l_x,l_y,m_depth);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
 			vertexBuffer.put(vertices_frontface);
 			vertexBuffer.position(0);
@@ -190,7 +195,7 @@ public class ohmTile {
 				m_transparency = 1;
 				//m_depth = -100  - (int)(Math.random() * ((50 - 0)));;
 				spawnTile();
-				m_depth = -100;
+				m_depth = -70;
 			}
 		
 		}

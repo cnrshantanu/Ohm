@@ -50,7 +50,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	//private ohmTile				ohmImage3;
 	//private ohmTile				ohmImage4;
 	//private ohmTile				ohmImage5;
-	ohmTile[] ohmImage = 		new ohmTile[30];
+	ohmTile[] ohmImage = 		new ohmTile[10];
 	NeelkanthTile backGround 	=  new NeelkanthTile();
 	Random Ran = new Random();
 	
@@ -61,7 +61,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		this.resource = r;
 		this.context = _context;
 		resource =r;
-		for(int i = 0; i<30;i++)
+		for(int i = 0; i<10;i++)
 		{
 			ohmImage[i] = new ohmTile();
 		}
@@ -76,7 +76,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	@Override
 	public void onDrawFrame(GL10 gl) {
 		
-		for(int i = 0; i<30;i++)
+		for(int i = 0; i<10;i++)
 				ohmImage[i].update();
 		//ohmImage.update();
 		//ohmImage.update();
@@ -89,7 +89,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		gl.glPushMatrix();
 		{
 			//gl.glColor4f(1f, 1f, 1f, 0f);
-			for(int i = 0 ; i <30 ; i++){
+			for(int i = 0 ; i <10 ; i++){
 				
 				gl.glPushMatrix();
 				ohmImage[i].draw(gl);
