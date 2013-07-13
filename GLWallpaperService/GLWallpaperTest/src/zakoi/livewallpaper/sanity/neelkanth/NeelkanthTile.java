@@ -9,13 +9,13 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.content.Context;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 import android.util.Log;
-import android.view.Display;
+
 import android.view.MotionEvent;
 
 /**

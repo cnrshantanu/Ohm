@@ -3,36 +3,27 @@
  */
 package zakoi.livewallpaper.sanity.neelkanth;
 
-import java.io.File;
-import java.io.IOException;
+
 import java.util.Random;
-import java.util.concurrent.locks.Lock;
+
 
 import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL;
+
 import javax.microedition.khronos.opengles.GL10;
 
 import net.rbgrn.android.glwallpaperservice.GLWallpaperService;
 
 
-import android.R.string;
+
 import android.content.Context;
-import android.content.Intent;
+
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+
 import android.opengl.GLU;
-import android.opengl.GLSurfaceView.Renderer;
-import android.os.Environment;
-import android.text.format.Time;
+
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.widget.SlidingDrawer;
-import android.widget.Toast;
+
 
 /**
  * @author Shantanu Das

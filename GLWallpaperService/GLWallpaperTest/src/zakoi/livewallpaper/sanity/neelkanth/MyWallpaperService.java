@@ -1,8 +1,7 @@
 package zakoi.livewallpaper.sanity.neelkanth;
 
 import net.rbgrn.android.glwallpaperservice.GLWallpaperService;
-import android.content.SharedPreferences;
-import android.os.Handler;
+
 import android.util.Log;
 import android.view.SurfaceHolder;
 

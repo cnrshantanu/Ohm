@@ -8,14 +8,11 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
-
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 import android.util.Log;
-import android.view.Display;
 import android.view.MotionEvent;
 
 /**
@@ -186,7 +183,7 @@ public class ohmTile {
 		
 		
 		
-		if (m_depth >= -1){
+		if (m_depth >= -3){
 			
 			m_depth += 0.15;
 			m_transparency -= 0.05;//temp;
