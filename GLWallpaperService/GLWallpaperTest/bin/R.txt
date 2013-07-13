@@ -5,6 +5,7 @@ int array wallpaper_folders 0x7f060002
 int drawable app_image 0x7f020000
 int drawable icon 0x7f020001
 int drawable ohm 0x7f020002
+int drawable shiva 0x7f020003
 int layout main 0x7f030000
 int string TTL_summary 0x7f050006
 int string TTL_title 0x7f050005

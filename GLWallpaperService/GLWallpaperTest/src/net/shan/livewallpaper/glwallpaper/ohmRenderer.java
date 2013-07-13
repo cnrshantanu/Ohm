@@ -50,7 +50,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	//private ohmTile				ohmImage3;
 	//private ohmTile				ohmImage4;
 	//private ohmTile				ohmImage5;
-	ohmTile[] ohmImage = 		new ohmTile[10];
+	ohmTile[] ohmImage = 		new ohmTile[30];
 	Random Ran = new Random();
 	
 	/** Constructor to set the handed over context */
@@ -60,7 +60,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		this.resource = r;
 		this.context = _context;
 		resource =r;
-		for(int i = 0; i<10;i++)
+		for(int i = 0; i<30;i++)
 		{
 			ohmImage[i] = new ohmTile();
 		}
@@ -75,7 +75,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	@Override
 	public void onDrawFrame(GL10 gl) {
 		
-		for(int i = 0; i<10;i++)
+		for(int i = 0; i<30;i++)
 				ohmImage[i].update();
 		//ohmImage.update();
 		//ohmImage.update();
@@ -89,49 +89,12 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		
 		{
 			//gl.glColor4f(1f, 1f, 1f, 0f);
-			gl.glPushMatrix();
-			gl.glTranslatef(3f,2.5f,-3.5f);
-			ohmImage[0].draw(gl);
-			gl.glPopMatrix();
-			
-//			gl.glPushMatrix();
-//			gl.glTranslatef(0f,0.0f,-3.5f);
-//			ohmImage[8].draw(gl);
-//			gl.glTranslatef(1f,1.0f,-3.5f);
-//			ohmImage[9].draw(gl);
-//			gl.glPopMatrix();
-			//gl.glTranslatef(0.5f,2f,-4f);
-			//gl.glColor4f(1f, 1f, 1f, 0.6f);
-			gl.glTranslatef(-1.2f,2.5f,-3.5f);
-			ohmImage[1].draw(gl);
-			
-			//gl.glTranslatef(-2.5f,2f,-4f);
-			
-			gl.glTranslatef(2.48f,0f,0f);
-			ohmImage[2].draw(gl);
-			
-			gl.glTranslatef(0f,-5f,0f);
-			ohmImage[3].draw(gl);
-			
-			gl.glTranslatef(-2.48f,0f,0f);
-			ohmImage[4].draw(gl);
-			
-			gl.glTranslatef(-3f,2.5f,0f);
-			ohmImage[5].draw(gl);
-			
-			gl.glTranslatef(-3f,1f,-3f);
-			ohmImage[6].draw(gl);
-			
-			gl.glTranslatef(0f,3f,-1f);
-			ohmImage[7].draw(gl);
-			
-			gl.glTranslatef(-1f,-3f,-1f);
-			ohmImage[8].draw(gl);
-			
-			gl.glTranslatef(0f,3f,3f);
-			ohmImage[9].draw(gl);
-			
-			
+			for(int i = 0 ; i <30 ; i++){
+				
+				gl.glPushMatrix();
+				ohmImage[i].draw(gl);
+				gl.glPopMatrix();	
+			}
 		}
 		gl.glPopMatrix();
 		

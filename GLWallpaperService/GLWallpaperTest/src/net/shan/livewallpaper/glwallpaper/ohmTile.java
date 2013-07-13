@@ -24,7 +24,7 @@ import android.view.MotionEvent;
  */
 public class ohmTile {
 	
-	protected float m_depth = 0,m_transparency = 1f,m_x = 0;;	
+	protected float m_depth = 0,m_transparency = 1f,m_x = 0,m_y = 0;	
 	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	protected float vertices_frontface[] = {
 			-1.0f,  -1.0f,  0.0f,		// V1 - bottom left
@@ -50,6 +50,8 @@ public class ohmTile {
 	};		
 	/** The texture pointer */
 	protected static int[] textures = new int[1];
+	private final float C_MAX_WIDTH = 10;
+	private final float C_MAX_HEIGHT = 30;
 
 	public ohmTile() {
 		// a float has 4 bytes so we allocate for each coordinate 4 bytes
@@ -71,6 +73,17 @@ public class ohmTile {
 		textureBuffer.put(texture);
 		textureBuffer.position(0);
 		
+		m_depth = -100  - (int)(Math.random() * (100 - 0));
+		spawnTile();
+		
+	}
+	
+	private void spawnTile(){
+		
+		m_x = (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
+		m_y = (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
+		Log.d("Values","m_x = "+m_x);
+		Log.d("Values","m_y = "+m_y);
 	}
 
 	/**
@@ -128,7 +141,7 @@ public class ohmTile {
 //			gl.glRotatef(0, 0, 1, 0);
 //			gl.glTranslatef(1.5f/2,-2.5f/2f,0f);
 			gl.glColor4f(1f, 1f, 1f,m_transparency);
-			gl.glTranslatef(m_x,0f,m_depth);
+			gl.glTranslatef(m_x,m_y,m_depth);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
 			vertexBuffer.put(vertices_frontface);
 			vertexBuffer.position(0);
@@ -175,7 +188,9 @@ public class ohmTile {
 			if(m_transparency<0)
 			{
 				m_transparency = 1;
-				m_depth = -100  - (int)(Math.random() * ((50 - 0)));;
+				//m_depth = -100  - (int)(Math.random() * ((50 - 0)));;
+				spawnTile();
+				m_depth = -100;
 			}
 		
 		}
