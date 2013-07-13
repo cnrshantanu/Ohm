@@ -83,7 +83,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		//ohmImage.update();
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 		gl.glLoadIdentity();
-
+		//gl.glColor4f(0f, 1f, 1f, 1f);
 		gl.glTranslatef(0.0f, 0.0f, -6.1f);		// move 5 units INTO the screen
 		gl.glPushMatrix();
 		
@@ -93,6 +93,13 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 			gl.glTranslatef(3f,2.5f,-3.5f);
 			ohmImage[0].draw(gl);
 			gl.glPopMatrix();
+			
+//			gl.glPushMatrix();
+//			gl.glTranslatef(0f,0.0f,-3.5f);
+//			ohmImage[8].draw(gl);
+//			gl.glTranslatef(1f,1.0f,-3.5f);
+//			ohmImage[9].draw(gl);
+//			gl.glPopMatrix();
 			//gl.glTranslatef(0.5f,2f,-4f);
 			//gl.glColor4f(1f, 1f, 1f, 0.6f);
 			gl.glTranslatef(-1.2f,2.5f,-3.5f);
@@ -165,12 +172,13 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	
 		gl.glEnable(GL10.GL_TEXTURE_2D);			//Enable Texture Mapping ( NEW )
 		gl.glShadeModel(GL10.GL_SMOOTH); 			//Enable Smooth Shading
-		//gl.glClearColor(0f, 0f, 0f, 0f); 	//Black Background
-		gl.glClearDepthf(1.0f); 					//Depth Buffer Setup
+		gl.glClearColor(0f, 0f, 0f, 0f); 	//Black Background
 		gl.glEnable(GL10.GL_DEPTH_TEST); 			//Enables Depth Testing
+		gl.glClearDepthf(1.0f); 					//Depth Buffer Setup
 		gl.glDepthFunc(GL10.GL_LEQUAL); 			//The Type Of Depth Testing To Do
-		gl.glEnable(GL10.GL_CULL_FACE);
+		//gl.glEnable(GL10.GL_CULL_FACE);
 		gl.glEnable(GL10.GL_ALPHA_TEST);
+		gl.glAlphaFunc(GL10.GL_GREATER, 0);
 		gl.glEnable(GL10.GL_BLEND);
 		//gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);

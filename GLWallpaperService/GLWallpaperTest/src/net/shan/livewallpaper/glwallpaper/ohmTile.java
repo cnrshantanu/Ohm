@@ -127,12 +127,11 @@ public class ohmTile {
 //			gl.glScalef(0.97f, 0.97f, 0f);
 //			gl.glRotatef(0, 0, 1, 0);
 //			gl.glTranslatef(1.5f/2,-2.5f/2f,0f);
-			
+			gl.glColor4f(1f, 1f, 1f,m_transparency);
 			gl.glTranslatef(m_x,0f,m_depth);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
 			vertexBuffer.put(vertices_frontface);
 			vertexBuffer.position(0);
-			gl.glColor4f(1f, 1f, 1f,m_transparency);
 			gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, vertices_frontface.length / 3);
 			
 		}
