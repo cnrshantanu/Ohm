@@ -51,7 +51,7 @@ public class ohmTile {
 	/** The texture pointer */
 	protected static int[] textures = new int[1];
 	private final float C_MAX_WIDTH = 10;
-	private final float C_MAX_HEIGHT = 30;
+	private final float C_MAX_HEIGHT = 20;
 
 	public ohmTile() {
 		// a float has 4 bytes so we allocate for each coordinate 4 bytes
