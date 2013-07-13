@@ -41,7 +41,7 @@ import android.widget.Toast;
 
 public class ohmRenderer implements GLWallpaperService.Renderer {
 
-	int index = 0 + (int)(Math.random() * ((5 - 0)));
+	int index = 0 + (int)(Math.random() * ((10 - 0)));
 	private	static Boolean		m_init       		= false;
 	private Resources 			resource;
 	private Context				context;
@@ -50,7 +50,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	//private ohmTile				ohmImage3;
 	//private ohmTile				ohmImage4;
 	//private ohmTile				ohmImage5;
-	ohmTile[] ohmImage = 		new ohmTile[5];
+	ohmTile[] ohmImage = 		new ohmTile[10];
 	Random Ran = new Random();
 	
 	/** Constructor to set the handed over context */
@@ -60,7 +60,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		this.resource = r;
 		this.context = _context;
 		resource =r;
-		for(int i = 0; i<5;i++)
+		for(int i = 0; i<10;i++)
 		{
 			ohmImage[i] = new ohmTile();
 		}
@@ -75,7 +75,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	@Override
 	public void onDrawFrame(GL10 gl) {
 		
-		for(int i = 0; i<5;i++)
+		for(int i = 0; i<10;i++)
 				ohmImage[i].update();
 		//ohmImage.update();
 		//ohmImage.update();
@@ -109,6 +109,20 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 			gl.glTranslatef(-2.48f,0f,0f);
 			ohmImage[4].draw(gl);
 			
+			gl.glTranslatef(-3f,2.5f,0f);
+			ohmImage[5].draw(gl);
+			
+			gl.glTranslatef(-3f,1f,-3f);
+			ohmImage[6].draw(gl);
+			
+			gl.glTranslatef(0f,3f,-1f);
+			ohmImage[7].draw(gl);
+			
+			gl.glTranslatef(-1f,-3f,-1f);
+			ohmImage[8].draw(gl);
+			
+			gl.glTranslatef(0f,3f,3f);
+			ohmImage[9].draw(gl);
 			
 			
 		}
@@ -142,7 +156,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		
 		
 			
-		ohmTile.loadGLTexture(gl, resource, R.drawable.icon);
+		ohmTile.loadGLTexture(gl, resource, R.drawable.ohm);
 			
 		
 		//ohmImage.loadGLTexture(gl, resource, R.drawable.ohm);
