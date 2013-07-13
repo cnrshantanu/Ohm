@@ -51,6 +51,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	//private ohmTile				ohmImage4;
 	//private ohmTile				ohmImage5;
 	ohmTile[] ohmImage = 		new ohmTile[30];
+	NeelkanthTile backGround 	=  new NeelkanthTile();
 	Random Ran = new Random();
 	
 	/** Constructor to set the handed over context */
@@ -86,7 +87,6 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		//gl.glColor4f(0f, 1f, 1f, 1f);
 		gl.glTranslatef(0.0f, 0.0f, -6.1f);		// move 5 units INTO the screen
 		gl.glPushMatrix();
-		
 		{
 			//gl.glColor4f(1f, 1f, 1f, 0f);
 			for(int i = 0 ; i <30 ; i++){
@@ -98,6 +98,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		}
 		gl.glPopMatrix();
 		
+		backGround.draw(gl);
 		
 		
 	}
@@ -127,6 +128,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		
 			
 		ohmTile.loadGLTexture(gl, resource, R.drawable.ohm);
+		backGround.loadGLTexture(gl, resource, R.drawable.shiva);
 			
 		
 		//ohmImage.loadGLTexture(gl, resource, R.drawable.ohm);
@@ -157,6 +159,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 			return;
 		
 		ohmTile.release(gl);
+		backGround.release(gl);
 		
 		//ohmImage.release(gl);
 		
