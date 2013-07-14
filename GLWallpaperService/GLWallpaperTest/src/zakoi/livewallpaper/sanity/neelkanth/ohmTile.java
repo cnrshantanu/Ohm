@@ -16,13 +16,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 /**
- * @author impaler
+ * @author Shantanu Das
  *
  */
 public class ohmTile {
 	
 	protected float m_depth = 0,m_transparency = 1f,m_x = 0,m_y = 0;	
-	protected final float C_HAND_X = -8.2f, C_HAND_Y = -1f;
+	protected float C_HAND_X = -8.2f, C_HAND_Y = -1f;
+	protected final float C_HAND_CENTREX = -8.2f, C_HAND_CENTREY = -1f, C_HAND_RADIUS = 0.5f;
 	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	protected float vertices_frontface[] = {
 			-1.0f,  -1.0f,  0.0f,		// V1 - bottom left
@@ -80,8 +81,9 @@ public class ohmTile {
 		
 		m_x = (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
 		m_y = (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
-		Log.d("Values","m_x = "+m_x);
-		Log.d("Values","m_y = "+m_y);
+		C_HAND_X = (C_HAND_CENTREX - C_HAND_RADIUS) + (float)(Math.random() * C_HAND_RADIUS * 2);
+		C_HAND_Y = (C_HAND_CENTREY - C_HAND_RADIUS) + (float)(Math.random() * C_HAND_RADIUS * 2);
+		
 	}
 
 	/**
@@ -200,11 +202,17 @@ public class ohmTile {
 			m_depth += 0.3;
 		}
 		
+		if(m_depth >= -75 && m_depth <=-60){
+			
+			m_transparency = (-m_depth - 60 )/15f;
+			m_transparency = 1 - m_transparency;
+			m_transparency *= 0.8f;
+		}
 		
 			
 	}
 	
-	//-------------- draw functions -----
+	
 		
 }
 

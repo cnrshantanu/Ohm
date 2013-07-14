@@ -82,8 +82,7 @@ public class NeelkanthTile {
 		
 		m_x = (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
 		m_y = (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
-		Log.d("Values","m_x = "+m_x);
-		Log.d("Values","m_y = "+m_y);
+	
 	}
 
 	/**
@@ -175,33 +174,9 @@ public class NeelkanthTile {
 	
 	public void onTouchEvent(MotionEvent event) {
 		
-		m_depth -= 0.6;
+			
+	}
 	
-	}
-	public void update(){
-		
-		
-		
-		if (m_depth >= -1){
-			
-			m_depth += 0.15;
-			m_transparency -= 0.05;//temp;
-			if(m_transparency<0)
-			{
-				m_transparency = 1;
-				//m_depth = -100  - (int)(Math.random() * ((50 - 0)));;
-				spawnTile();
-				m_depth = -100;
-			}
-		
-		}
-		else {
-			m_depth += 0.3;
-		}
-		
-		
-			
-	}
 	
 	//-------------- draw functions -----
 		
