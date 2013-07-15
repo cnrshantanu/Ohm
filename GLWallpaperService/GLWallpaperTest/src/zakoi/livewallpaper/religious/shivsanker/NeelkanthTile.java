@@ -168,8 +168,14 @@ public class NeelkanthTile {
 	
 		
 	public static void release(GL10 gl){
-		gl.glDeleteTextures(1, textures, 0);
-		Log.d("DEBUG","released");
+		try{
+			gl.glDeleteTextures(1, textures, 0);
+		}
+		catch(Exception e){
+			Log.d("DEBUG","cow Exception caught in release neelkanth");
+		}
+		
+		
 	}
 	
 	public void onTouchEvent(MotionEvent event) {

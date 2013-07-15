@@ -107,7 +107,7 @@ public class GLWallpaperService extends WallpaperService {
 		
 		@Override
 		 public void onTouchEvent(MotionEvent event) {
-			Log.d("DEBUG", "zara zara touch");
+			//Log.d("DEBUG", "zara zara touch");
 			mGLThread.onTouchEvent(event);
 			super.onTouchEvent(event);
 		}
@@ -576,6 +576,7 @@ class GLThread extends Thread {
 						// surface and the EGL surface.
 						if (mPaused) {
 							if(mSurfaceDestroyed) {
+								Log.d("DEBUG", "Cow surface pause 0");
 								mRenderer.onSurfacePause(gl, w, h);
 							}
 							stopEglLocked();
@@ -669,8 +670,8 @@ class GLThread extends Thread {
 					tellRendererSurfaceChanged = false;
 				}
 				else if(mSurfaceDestroyed) {
-					
-					mRenderer.onSurfacePause(gl, w, h);
+					//Log.d("DEBUG", "Cow surface pause 1");
+					//mRenderer.onSurfacePause(gl, w, h);
 				}
 				
 				if ((w > 0) && (h > 0)) {
@@ -739,7 +740,7 @@ class GLThread extends Thread {
 	}
 
 	public void onTouchEvent(MotionEvent event){
-		Log.d("*#DEBUG","*#TOUCH EVENT OCCURS");
+		//Log.d("*#DEBUG","*#TOUCH EVENT OCCURS");
 		mRenderer.onTouchEvent(event);
 	}
 	

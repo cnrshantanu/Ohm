@@ -160,7 +160,7 @@ public class ohmTile {
 	}
 	/** The draw method for the square with the GL context */
 	public void draw(GL10 gl) {
-	
+		
 		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 		
@@ -170,10 +170,16 @@ public class ohmTile {
 	
 	}
 	
-		
+	
 	public static void release(GL10 gl){
-		gl.glDeleteTextures(1, textures, 0);
-		Log.d("DEBUG","released");
+		try{
+			gl.glDeleteTextures(1, textures, 0);
+		}
+		catch(Exception e){
+			Log.d("DEBUG","cow Exception caught in release ohm tile");
+		}
+		
+		
 	}
 	
 	public void onTouchEvent(MotionEvent event) {

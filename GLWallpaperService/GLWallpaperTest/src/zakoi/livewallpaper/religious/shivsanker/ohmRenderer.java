@@ -15,6 +15,7 @@ import net.rbgrn.android.glwallpaperservice.GLWallpaperService;
 import android.content.Context;
 import android.content.res.Resources;
 import android.opengl.GLU;
+import android.util.Log;
 import android.view.MotionEvent;
 
 
@@ -53,6 +54,11 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		
 	@Override
 	public void onDrawFrame(GL10 gl) {
+		
+		if(!m_init){
+			Log.d("DEBUG","cow Reinitializing graphics");
+			initGraphics(gl);
+		}
 		
 		for(int i = 0; i<10;i++)
 				ohmImage[i].update();
@@ -103,11 +109,15 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	@Override
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 		
+		Log.d("DEBUG","cow surface created ");
+		initGraphics(gl);	
+	  
+   	}
+	
+	private void initGraphics(GL10 gl){
 		
-			
 		ohmTile.loadGLTexture(gl, resource, R.drawable.ohm);
 		NeelkanthTile.loadGLTexture(gl, resource, R.drawable.shiva);
-			
 		gl.glEnable(GL10.GL_TEXTURE_2D);			//Enable Texture Mapping ( NEW )
 		gl.glShadeModel(GL10.GL_SMOOTH); 			//Enable Smooth Shading
 		gl.glEnable(GL10.GL_DEPTH_TEST); 			//Enables Depth Testing
@@ -123,13 +133,14 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
 		gl.glClearColor(0f, 0f, 0f, 0f); 	//Black Background
 		m_init = true;
+		
+	}
 	
-	      
-   	}
 	public void release(GL10 gl) {
 		if(!m_init)
 			return;
 		
+		Log.d("DEBUG","cow texture released");
 		ohmTile.release(gl);
 		NeelkanthTile.release(gl);
 		m_init = false;
@@ -140,7 +151,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		release(gl);
 	}
 
-	@Override
+	//@Override
 	public void onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
 		
