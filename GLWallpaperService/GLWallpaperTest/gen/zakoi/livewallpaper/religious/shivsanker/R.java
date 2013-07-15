@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package zakoi.livewallpaper.sanity.neelkanth;
+package zakoi.livewallpaper.religious.shivsanker;
 
 public final class R {
     public static final class array {

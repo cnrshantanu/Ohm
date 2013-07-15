@@ -1,4 +1,4 @@
-package zakoi.livewallpaper.sanity.neelkanth;
+package zakoi.livewallpaper.religious.shivsanker;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

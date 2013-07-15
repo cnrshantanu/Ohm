@@ -1,4 +1,4 @@
-package zakoi.livewallpaper.sanity.neelkanth;
+package zakoi.livewallpaper.religious.shivsanker;
 
 import net.rbgrn.android.glwallpaperservice.GLWallpaperService;
 import android.view.SurfaceHolder;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package zakoi.livewallpaper.sanity.neelkanth;
+package zakoi.livewallpaper.religious.shivsanker;
 
 
 import java.util.Random;
@@ -9,6 +9,8 @@ import java.util.Random;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+
+import zakoi.livewallpaper.religious.shivsanker.R;
 import net.rbgrn.android.glwallpaperservice.GLWallpaperService;
 import android.content.Context;
 import android.content.res.Resources;
