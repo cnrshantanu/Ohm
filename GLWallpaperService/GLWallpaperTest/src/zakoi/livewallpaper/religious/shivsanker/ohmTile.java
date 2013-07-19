@@ -21,9 +21,16 @@ import android.view.MotionEvent;
  */
 public class ohmTile {
 	
+	
+	//NeelkanthTile nl 	=  new NeelkanthTile(); //to access the tabletDevice variable
+	
 	protected float m_depth = 0,m_transparency = 1f,m_x = 0,m_y = 0;	
 	protected float C_HAND_X = -8.2f, C_HAND_Y = -1f;
 	protected final float C_HAND_CENTREX = -8.2f, C_HAND_CENTREY = -1f, C_HAND_RADIUS = 0.7f;
+	
+	protected float C_HAND_Xtab = -10.2f, C_HAND_Ytab = -1f; //for tablets.
+	protected final float C_HAND_CENTREXtab = -10.2f, C_HAND_CENTREYtab = -1f, C_HAND_RADIUStab = 0.7f;
+	
 	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	protected float vertices_frontface[] = {
 			-1.0f,  -1.0f,  0.0f,		// V1 - bottom left
@@ -51,6 +58,7 @@ public class ohmTile {
 	protected static int[] textures = new int[1];
 	private final float C_MAX_WIDTH = 10;
 	private final float C_MAX_HEIGHT = 20;
+	boolean tabletSet = true;
 
 	public ohmTile() {
 		// a float has 4 bytes so we allocate for each coordinate 4 bytes
@@ -78,11 +86,22 @@ public class ohmTile {
 	}
 	
 	private void spawnTile(){
+		//if(nl.tabletDevice == false)
+		//{
+			m_x = (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
+			m_y = (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
+			C_HAND_X = (C_HAND_CENTREX - C_HAND_RADIUS) + (float)(Math.random() * C_HAND_RADIUS * 2);
+			C_HAND_Y = (C_HAND_CENTREY - C_HAND_RADIUS) + (float)(Math.random() * C_HAND_RADIUS * 2);
+			Log.d("Test"," ohmTile tabletDevice = "+tabletSet);
+		//}
 		
-		m_x = (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
-		m_y = (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
-		C_HAND_X = (C_HAND_CENTREX - C_HAND_RADIUS) + (float)(Math.random() * C_HAND_RADIUS * 2);
-		C_HAND_Y = (C_HAND_CENTREY - C_HAND_RADIUS) + (float)(Math.random() * C_HAND_RADIUS * 2);
+		/*else
+		{
+			m_x = (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
+			m_y = (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
+			C_HAND_X = (C_HAND_CENTREXtab - C_HAND_RADIUStab) + (float)(Math.random() * C_HAND_RADIUStab * 2);
+			C_HAND_Y = (C_HAND_CENTREYtab - C_HAND_RADIUStab) + (float)(Math.random() * C_HAND_RADIUStab * 2);
+		}*/
 		
 	}
 

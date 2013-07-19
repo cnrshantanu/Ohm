@@ -32,6 +32,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	private Resources 			resource;
 	ohmTile[] ohmImage = 		new ohmTile[10];
 	NeelkanthTile backGround 	=  new NeelkanthTile();
+	ohmTile tabtest = new ohmTile(); //to check for device;
 	Random Ran = new Random();
 	
 	/** Constructor to set the handed over context */
@@ -98,7 +99,27 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		gl.glMatrixMode(GL10.GL_PROJECTION); 	//Select The Projection Matrix
 		gl.glLoadIdentity(); 					//Reset The Projection Matrix
 		//Calculate The Aspect Ratio Of The Window
+		
+		Log.d("Tests","Window height = "+height);
+		Log.d("Tests","Window width = "+width);
+		
+		if(width > height)
+		{
+			backGround.tabletDevice = true;
+			tabtest.tabletSet = true;
+		}
+		
+		else
+		{
+			backGround.tabletDevice = false;
+			tabtest.tabletSet = false;
+		}
+		Log.d("Device Test"," OhmRenderer tabletDevice = "+ backGround.tabletDevice);
+		Log.d("Device Test"," OhmRenderer tablet = "+ tabtest.tabletSet);
+		
+		
 		GLU.gluPerspective(gl, 45.0f, (float)width / (float)height, 0.1f, 100.0f);
+		
 		//GLU.gluOrtho2D(gl, 0, width, 0, height);
 		
 		gl.glMatrixMode(GL10.GL_MODELVIEW); 	//Select The Modelview Matrix
@@ -135,6 +156,8 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		m_init = true;
 		
 	}
+	
+	
 	
 	public void release(GL10 gl) {
 		if(!m_init)

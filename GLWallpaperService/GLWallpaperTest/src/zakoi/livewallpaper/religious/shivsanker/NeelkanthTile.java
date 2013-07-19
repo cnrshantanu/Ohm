@@ -30,7 +30,16 @@ public class NeelkanthTile {
 			-1.0f,  -1.0f,  0.0f,		// V1 - bottom left
 			-1.0f,  1.0f,  0.0f,		// V2 - top left
 			 1.0f,  -1.0f,  0.0f,		// V3 - bottom right
-			 1.0f,  1.0f,  0.0f,		// V4 - top right
+			 1.0f,  1.0f,  0.0f,	
+	};
+	
+	
+	protected float tab_frontface[]={
+			-1.9f, -1.1f, 0.0f, // V1 - bottom left
+			-1.9f, 1.1f, 0.0f, // V2 - top left
+			1.9f, -1.1f, 0.0f, // V3 - bottom right
+			1.9f, 1.1f, 0.0f, // V4 - top right
+			
 	};
 	
 	protected float color[] = {
@@ -52,7 +61,8 @@ public class NeelkanthTile {
 	protected static int[] textures = new int[1];
 	private final float C_MAX_WIDTH = 10;
 	private final float C_MAX_HEIGHT = 30;
-
+	boolean tabletDevice = true;
+	
 	public NeelkanthTile() {
 		// a float has 4 bytes so we allocate for each coordinate 4 bytes
 		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(vertices_frontface.length * 4);
@@ -62,6 +72,7 @@ public class NeelkanthTile {
 		vertexBuffer = byteBuffer.asFloatBuffer();
 		
 		// fill the vertexBuffer with the vertices
+		Log.d("Device","tabletDevice = "+tabletDevice);
 		vertexBuffer.put(vertices_frontface);
 		
 		// set the cursor position to the beginning of the buffer
@@ -77,6 +88,8 @@ public class NeelkanthTile {
 		spawnTile();
 		
 	}
+	
+	
 	
 	private void spawnTile(){
 		
@@ -128,12 +141,13 @@ public class NeelkanthTile {
 	
 	public void drawImage(GL10 gl){
 		
+		
+		Log.d("Test","tabletDevice = "+tabletDevice);
 		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, textureBuffer);
 		
 		gl.glPushMatrix();
 		{
-			
 			
 //			gl.glTranslatef(-1.5f/2,2.5f/2,0f);
 //			gl.glScalef(0.97f, 0.97f, 0f);
@@ -143,9 +157,19 @@ public class NeelkanthTile {
 			gl.glTranslatef(0,0,-70);
 			gl.glScalef(28, 30, 0);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
-			vertexBuffer.put(vertices_frontface);
-			vertexBuffer.position(0);
-			gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, vertices_frontface.length / 3);
+			if(tabletDevice == false)
+			{
+				vertexBuffer.put(vertices_frontface);
+				vertexBuffer.position(0);
+				gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, vertices_frontface.length / 3); //This will draw the tile with vertices_frontface
+			}
+			
+			else
+			{
+				vertexBuffer.put(tab_frontface);
+				vertexBuffer.position(0);
+				gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, tab_frontface.length / 3);
+			}
 			
 		}
 		gl.glPopMatrix();
