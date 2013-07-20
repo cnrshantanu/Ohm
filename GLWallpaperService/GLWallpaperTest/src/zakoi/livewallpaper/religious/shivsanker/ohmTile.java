@@ -72,7 +72,6 @@ public class ohmTile {
 	private void spawnTile(){
 		if(NeelkanthTile.istabletDevice == false)
 		{
-			Log.d("DE","got here");
 			m_x 		= (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
 			m_y 		= (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
 			C_HAND_X 	= (C_HAND_CENTREX - C_HAND_RADIUS) + (float)(Math.random() * C_HAND_RADIUS * 2);
@@ -80,7 +79,6 @@ public class ohmTile {
 		}
 		else
 		{
-			Log.d("DE","got here 1");
 			m_x 		= (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
 			m_y 		= (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
 			C_HAND_X 	= (C_HAND_CENTREXtab - C_HAND_RADIUStab) + (float)(Math.random() * C_HAND_RADIUStab * 2);
@@ -169,7 +167,7 @@ public class ohmTile {
 			m_transparency -= 0.05;
 			if(m_transparency<0)
 			{
-				m_transparency = 1f;
+				m_transparency = 0.81f;
 				spawnTile();
 				m_depth = -70;
 			}

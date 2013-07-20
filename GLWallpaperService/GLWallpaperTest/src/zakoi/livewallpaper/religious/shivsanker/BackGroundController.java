@@ -49,7 +49,7 @@ public class BackGroundController {
 		gl.glPushMatrix();
 		gl.glTranslatef(0f,0.5f,-70f);
 		gl.glRotatef(m_rotAngle, 0, 0, 1);
-		gl.glScalef(28, 30, 0);
+		gl.glScalef(48, 30, 0);
 		m_layers[0].draw(gl);
 		gl.glPopMatrix(); 
 		
@@ -58,7 +58,7 @@ public class BackGroundController {
 		gl.glTranslatef(0f,0.5f,-70f);
 		gl.glRotatef(360-m_rotAngle, 0, 0, 1);
 		if(!NeelkanthTile.istabletDevice)
-			gl.glScalef(35, 35, 0);
+			gl.glScalef(48, 30, 0);
 		else
 			gl.glScalef(28, 30, 0);
 		m_layers[1].draw(gl);
