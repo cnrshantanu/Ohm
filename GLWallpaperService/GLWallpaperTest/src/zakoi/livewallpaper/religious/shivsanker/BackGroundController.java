@@ -5,11 +5,10 @@ import javax.microedition.khronos.opengles.GL10;
 import android.content.res.Resources;
 
 
-/*
-	Author : Shantanu Das
-*/
-
-
+/**
+ * @author Shantanu Das
+ *
+ */
 public class BackGroundController {
 	
 	private	int				C_NO_LAYERS = 3;

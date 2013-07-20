@@ -4,9 +4,6 @@
 package zakoi.livewallpaper.religious.shivsanker;
 
 
-import java.util.Random;
-
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -33,10 +30,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	private	static 	Boolean					m_init       		= false;
 	private 		ohmTile[]				ohmImage 			= new ohmTile[10];
 	private 		BackGroundController	m_backGround 		= new BackGroundController();
-	private 		NeelkanthTile 			backGround 			= new NeelkanthTile();
-	private 		ohmTile					tabtest 			= new ohmTile(); 
-	
-	
+		
 	public ohmRenderer(Resources r,Context _context){
 		
 		this.resource = r;
@@ -85,19 +79,14 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		
 		if(width > height)
 		{
-			backGround.tabletDevice = true;
-			tabtest.tabletSet = true;
+			NeelkanthTile.istabletDevice = true;
 		}
 		
 		else
 		{
-			backGround.tabletDevice = false;
-			tabtest.tabletSet = false;
+			NeelkanthTile.istabletDevice = false;
 		}
-		Log.d("Device Test"," OhmRenderer tabletDevice = "+ backGround.tabletDevice);
-		Log.d("Device Test"," OhmRenderer tablet = "+ tabtest.tabletSet);
-		
-		
+				
 		GLU.gluPerspective(gl, 45.0f, (float)width / (float)height, 0.1f, 100.0f);
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
 		gl.glLoadIdentity(); 				
@@ -140,7 +129,6 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	}
 
 	public void onSurfacePause(GL10 gl, int width, int height) {
-		// TODO Auto-generated method stub
 		release(gl);
 	}
 

@@ -42,44 +42,35 @@ public class NeelkanthTile {
 	
 	protected FloatBuffer textureBuffer;	// buffer holding the texture coordinates
 	protected float texture[] = {    		
-			// Mapping coordinates for the vertices
 			0.0f, 1.0f,		// top left		(V2)
 			0.0f, 0.0f,		// bottom left	(V1)
 			1.0f, 1.0f,		// top right	(V4)
 			1.0f, 0.0f,		// bottom right	(V3)
 	};		
-	/** The texture pointer */
-	protected int[] textures = new int[1];
-	private final float C_MAX_WIDTH = 10;
-	private final float C_MAX_HEIGHT = 30;
-	boolean tabletDevice = true;
-	protected float m_depth = 0,m_transparency = 1f,m_x = 0,m_y = 0;	
-	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	
+	protected 		FloatBuffer vertexBuffer;
+	protected 	 	int[] 		textures 		= new int[1];
+	private final 	float 		C_MAX_WIDTH 	= 10;
+	private final 	float 		C_MAX_HEIGHT 	= 30;
+	public  static	boolean 	istabletDevice 	= true;
+	protected 		float 		m_depth 		= 0,
+								m_transparency 	= 1f,
+								m_x 			= 0,
+								m_y 			= 0;	
+		
 	public NeelkanthTile() {
-		// a float has 4 bytes so we allocate for each coordinate 4 bytes
 		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(vertices_frontface.length * 4);
 		byteBuffer.order(ByteOrder.nativeOrder());
-		
-		// allocates the memory from the byte buffer
 		vertexBuffer = byteBuffer.asFloatBuffer();
-		
-		// fill the vertexBuffer with the vertices
-		Log.d("Device","tabletDevice = "+tabletDevice);
 		vertexBuffer.put(vertices_frontface);
-		
-		// set the cursor position to the beginning of the buffer
 		vertexBuffer.position(0);
-		
 		byteBuffer = ByteBuffer.allocateDirect(texture.length * 4);
 		byteBuffer.order(ByteOrder.nativeOrder());
 		textureBuffer = byteBuffer.asFloatBuffer();
 		textureBuffer.put(texture);
 		textureBuffer.position(0);
-		
 		m_depth = -100  - (int)(Math.random() * (100 - 0));
 		spawnTile();
-		
 	}
 	
 	
@@ -137,7 +128,7 @@ public class NeelkanthTile {
 		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, textureBuffer);
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
-		if(tabletDevice == false)
+		if(istabletDevice == false)
 		{
 			vertexBuffer.put(vertices_frontface);
 			vertexBuffer.position(0);
