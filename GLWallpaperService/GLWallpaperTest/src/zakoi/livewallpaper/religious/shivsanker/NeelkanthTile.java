@@ -24,8 +24,6 @@ import android.view.MotionEvent;
  */
 public class NeelkanthTile {
 	
-	protected float m_depth = 0,m_transparency = 1f,m_x = 0,m_y = 0;	
-	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	protected float vertices_frontface[] = {
 			-1.0f,  -1.0f,  0.0f,		// V1 - bottom left
 			-1.0f,  1.0f,  0.0f,		// V2 - top left
@@ -42,13 +40,6 @@ public class NeelkanthTile {
 			
 	};
 	
-	protected float color[] = {
-			1.0f,  1.0f,  1.0f,1.0f,		// V1 - bottom left
-			1.0f,  1.0f,  1.0f,1.0f,		// V1 - bottom left
-			1.0f,  1.0f,  1.0f,1.0f,		// V1 - bottom left
-			1.0f,  1.0f,  1.0f,1.0f,		// V1 - bottom left
-	};
-	
 	protected FloatBuffer textureBuffer;	// buffer holding the texture coordinates
 	protected float texture[] = {    		
 			// Mapping coordinates for the vertices
@@ -58,10 +49,12 @@ public class NeelkanthTile {
 			1.0f, 0.0f,		// bottom right	(V3)
 	};		
 	/** The texture pointer */
-	protected static int[] textures = new int[1];
+	protected int[] textures = new int[1];
 	private final float C_MAX_WIDTH = 10;
 	private final float C_MAX_HEIGHT = 30;
 	boolean tabletDevice = true;
+	protected float m_depth = 0,m_transparency = 1f,m_x = 0,m_y = 0;	
+	protected FloatBuffer vertexBuffer;	// buffer holding the vertices
 	
 	public NeelkanthTile() {
 		// a float has 4 bytes so we allocate for each coordinate 4 bytes
@@ -106,14 +99,14 @@ public class NeelkanthTile {
 	
 	
 	
-	public static void loadGLTexture(GL10 gl, Resources resource, int id) {
+	public void loadGLTexture(GL10 gl, Resources resource, int id) {
 		// loading texture
 		Bitmap bitmap = BitmapFactory.decodeResource(resource,id);
 		loadGLTexture(gl,bitmap);
 		bitmap.recycle();
 	}
 	
-	private static void loadGLTexture(GL10 gl,Bitmap bitmap) {
+	private void loadGLTexture(GL10 gl,Bitmap bitmap) {
 		
 		//Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),
 			//	R.drawable.android1);
@@ -139,76 +132,43 @@ public class NeelkanthTile {
 		bitmap.recycle();
 	}
 	
-	public void drawImage(GL10 gl){
+	public void draw(GL10 gl){
 		
-		
-		Log.d("Test","tabletDevice = "+tabletDevice);
 		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, textureBuffer);
-		
-		gl.glPushMatrix();
+		gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
+		if(tabletDevice == false)
 		{
-			
-//			gl.glTranslatef(-1.5f/2,2.5f/2,0f);
-//			gl.glScalef(0.97f, 0.97f, 0f);
-//			gl.glRotatef(0, 0, 1, 0);
-//			gl.glTranslatef(1.5f/2,-2.5f/2f,0f);
-			gl.glColor4f(1f, 1f, 1f,1f);
-			gl.glTranslatef(0,0,-70);
-			gl.glScalef(28, 30, 0);
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
-			if(tabletDevice == false)
-			{
-				vertexBuffer.put(vertices_frontface);
-				vertexBuffer.position(0);
-				gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, vertices_frontface.length / 3); //This will draw the tile with vertices_frontface
-			}
-			
-			else
-			{
-				vertexBuffer.put(tab_frontface);
-				vertexBuffer.position(0);
-				gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, tab_frontface.length / 3);
-			}
-			
+			vertexBuffer.put(vertices_frontface);
+			vertexBuffer.position(0);
+			gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, vertices_frontface.length / 3); //This will draw the tile with vertices_frontface
 		}
-		gl.glPopMatrix();
-		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
-		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+		else
+		{
+			vertexBuffer.put(tab_frontface);
+			vertexBuffer.position(0);
+			gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, tab_frontface.length / 3);
+		}
+	}
+	
+	public void update(){
+		
 		
 		
 	}
-	/** The draw method for the square with the GL context */
-	public void draw(GL10 gl) {
-	
-		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 		
-		gl.glFrontFace(GL10.GL_CW);
-		
-		drawImage(gl);
-	
-	}
-	
-		
-	public static void release(GL10 gl){
+	public void release(GL10 gl){
 		try{
 			gl.glDeleteTextures(1, textures, 0);
 		}
 		catch(Exception e){
 			Log.d("DEBUG","cow Exception caught in release neelkanth");
 		}
-		
-		
 	}
 	
 	public void onTouchEvent(MotionEvent event) {
 		
 			
 	}
-	
-	
-	//-------------- draw functions -----
-		
 }
 

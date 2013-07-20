@@ -216,7 +216,7 @@ public class ohmTile {
 			m_transparency -= 0.05;//temp;
 			if(m_transparency<0)
 			{
-				m_transparency = 1;
+				m_transparency = 1f;
 				//m_depth = -100  - (int)(Math.random() * ((50 - 0)));;
 				spawnTile();
 				m_depth = -70;
