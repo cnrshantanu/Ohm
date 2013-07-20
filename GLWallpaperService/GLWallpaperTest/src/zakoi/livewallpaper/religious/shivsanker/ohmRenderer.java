@@ -4,6 +4,8 @@
 package zakoi.livewallpaper.religious.shivsanker;
 
 
+import java.util.Timer;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -12,8 +14,19 @@ import net.rbgrn.android.glwallpaperservice.GLWallpaperService;
 import android.content.Context;
 import android.content.res.Resources;
 import android.opengl.GLU;
+import android.os.Debug;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.MotionEvent;
+import aurelienribon.tweenengine.BaseTween;
+import aurelienribon.tweenengine.Timeline;
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenCallback;
+import aurelienribon.tweenengine.TweenEquation;
+import aurelienribon.tweenengine.TweenManager;
+import aurelienribon.tweenengine.equations.Elastic;
+import aurelienribon.tweenengine.equations.Expo;
+import aurelienribon.tweenengine.equations.Linear;
 
 
 /**
@@ -30,6 +43,10 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	private	static 	Boolean					m_init       		= false;
 	private 		ohmTile[]				ohmImage 			= new ohmTile[10];
 	private 		BackGroundController	m_backGround 		= new BackGroundController();
+	private			TweenManager			m_tweenManager;
+	private			Particle				particle1;
+	private 		long 					m_lastMillis 		= -1;
+	private static	Boolean					m_tweenComplete		= false;
 		
 	public ohmRenderer(Resources r,Context _context){
 		
@@ -38,6 +55,11 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		{
 			ohmImage[i] = new ohmTile();
 		}
+		Tween.registerAccessor(Particle.class, new ParticleAccesor());
+		Tween.registerAccessor(BackGroundController.class, new RotationAccessor());
+		m_tweenManager = new TweenManager();
+		particle1 = new Particle();
+		startTween();
 	}
 		
 	@Override
@@ -47,6 +69,7 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 			initGraphics(gl);
 		}
 		
+		updateTweener();		
 		for(int i = 0; i<C_OHM_MAX;i++)
 				ohmImage[i].update();
 		m_backGround.update();
@@ -99,6 +122,27 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		initGraphics(gl);	
    	}
 	
+	private void updateTweener(){
+		
+		
+		if (m_lastMillis > 0) {
+            long currentMillis = System.currentTimeMillis();
+            final float delta = (currentMillis - m_lastMillis) / 1000f;
+            m_tweenManager.update(delta);
+            m_lastMillis = currentMillis;
+        } 
+		else {
+        	m_lastMillis = System.currentTimeMillis();
+		}
+		
+		if(m_tweenComplete) {
+			
+			m_backGround.setRotationAngle(0);
+			startTween();
+		}
+			
+		
+	}
 	private void initGraphics(GL10 gl){
 		
 		ohmTile.loadGLTexture(gl, resource, R.drawable.ohm);
@@ -131,12 +175,35 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	public void onSurfacePause(GL10 gl, int width, int height) {
 		release(gl);
 	}
-
+	
+	private static TweenCallback onComplete = new TweenCallback()
+	{
+		
+		@Override
+		public void onEvent(int type, BaseTween<?> source)
+		{
+			
+			m_tweenComplete = true;
+			
+		}
+	};
+	
+	private void startTween(){
+		
+		Tween.to(m_backGround, RotationAccessor.ROT_ANGLE, 10.0f)
+	    .target(361)
+	    .ease(Linear.INOUT)
+	    .start(m_tweenManager)
+	    .setCallback(onComplete);
+		m_tweenComplete = false;
+	}
+	
 	//@Override
 	public void onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
 		
-		//		ohmImage.onTouchEvent(event);
+		//startTween();
+	
 		
 	}
 

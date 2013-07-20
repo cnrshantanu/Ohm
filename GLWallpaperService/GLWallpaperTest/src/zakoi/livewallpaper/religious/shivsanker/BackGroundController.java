@@ -3,6 +3,7 @@ package zakoi.livewallpaper.religious.shivsanker;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.content.res.Resources;
+import android.util.Log;
 
 
 /**
@@ -35,10 +36,6 @@ public class BackGroundController {
 		
 		for(int i = 0; i < C_NO_LAYERS; i++)
 			m_layers[i].update();
-		
-		m_rotAngle += 0.4f;
-		if(m_rotAngle>360)
-			m_rotAngle -= 360;
 		
 		m_snakeRotAngle += 0.1f;
 		if(m_snakeRotAngle>180)
@@ -98,6 +95,17 @@ public class BackGroundController {
 		
 		
 	}
+	
+	public void setRotationAngle(float _angle){
+		
+		m_rotAngle = _angle;
+	}
+	
+	public float getRotationAngle(){
+		
+		return m_rotAngle;
+	}
+	
 	
 	public void release(GL10 gl){
 		
