@@ -52,7 +52,7 @@ public class NeelkanthTile {
 	protected 	 	int[] 		textures 		= new int[1];
 	private final 	float 		C_MAX_WIDTH 	= 10;
 	private final 	float 		C_MAX_HEIGHT 	= 30;
-	public  static	boolean 	istabletDevice 	= true;
+	public  static	boolean 	istabletDevice 	= false;
 	protected 		float 		m_depth 		= 0,
 								m_transparency 	= 1f,
 								m_x 			= 0,

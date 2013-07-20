@@ -31,8 +31,8 @@ public class ohmTile {
 								C_HAND_X = -8.2f,
 								C_HAND_Y = -1f;
 	
-	protected final float 		C_HAND_CENTREX 			= -8.2f,
-								C_HAND_CENTREY			= -1f,
+	protected final float 		C_HAND_CENTREX 			= -11.8f,
+								C_HAND_CENTREY			= -4,
 								C_HAND_RADIUS 			= 0.7f,	
 								C_HAND_CENTREXtab 		= -10.2f,
 								C_HAND_CENTREYtab 		= -1f,
@@ -72,6 +72,7 @@ public class ohmTile {
 	private void spawnTile(){
 		if(NeelkanthTile.istabletDevice == false)
 		{
+			Log.d("DE","got here");
 			m_x 		= (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
 			m_y 		= (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
 			C_HAND_X 	= (C_HAND_CENTREX - C_HAND_RADIUS) + (float)(Math.random() * C_HAND_RADIUS * 2);
@@ -79,6 +80,7 @@ public class ohmTile {
 		}
 		else
 		{
+			Log.d("DE","got here 1");
 			m_x 		= (float)(Math.random() *(C_MAX_WIDTH*2)) - C_MAX_WIDTH;
 			m_y 		= (float)(Math.random() *(C_MAX_HEIGHT*2)) - C_MAX_HEIGHT;
 			C_HAND_X 	= (C_HAND_CENTREXtab - C_HAND_RADIUStab) + (float)(Math.random() * C_HAND_RADIUStab * 2);

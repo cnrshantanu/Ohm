@@ -57,14 +57,20 @@ public class BackGroundController {
 		gl.glPushMatrix();
 		gl.glTranslatef(0f,0.5f,-70f);
 		gl.glRotatef(360-m_rotAngle, 0, 0, 1);
-		gl.glScalef(28, 30, 0);
+		if(!NeelkanthTile.istabletDevice)
+			gl.glScalef(35, 35, 0);
+		else
+			gl.glScalef(28, 30, 0);
 		m_layers[1].draw(gl);
 		gl.glPopMatrix(); 
 		
 		gl.glColor4f(1f, 1f, 1f,1f);
 		gl.glPushMatrix();
 		gl.glTranslatef(0,3,-70);
-		gl.glScalef(20, 30, 0);
+		if(!NeelkanthTile.istabletDevice)
+			gl.glScalef(35, 30, 0);
+		else
+			gl.glScalef(28, 30, 0);
 		m_layers[2].draw(gl);
 		gl.glPopMatrix(); 
 		
