@@ -4,8 +4,6 @@
 package zakoi.livewallpaper.religious.shivsanker;
 
 
-import java.util.Timer;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -14,18 +12,12 @@ import net.rbgrn.android.glwallpaperservice.GLWallpaperService;
 import android.content.Context;
 import android.content.res.Resources;
 import android.opengl.GLU;
-import android.os.Debug;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.MotionEvent;
 import aurelienribon.tweenengine.BaseTween;
-import aurelienribon.tweenengine.Timeline;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
-import aurelienribon.tweenengine.TweenEquation;
 import aurelienribon.tweenengine.TweenManager;
-import aurelienribon.tweenengine.equations.Elastic;
-import aurelienribon.tweenengine.equations.Expo;
 import aurelienribon.tweenengine.equations.Linear;
 
 
@@ -39,12 +31,11 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 
 	
 	private 		Resources				resource;
-	private final 	int						C_OHM_MAX			= 10;
+	private final 	int						C_OHM_MAX			= 6;
 	private	static 	Boolean					m_init       		= false;
 	private 		ohmTile[]				ohmImage 			= new ohmTile[10];
 	private 		BackGroundController	m_backGround 		= new BackGroundController();
 	private			TweenManager			m_tweenManager;
-	private			Particle				particle1;
 	private 		long 					m_lastMillis 		= -1;
 	private static	Boolean					m_tweenComplete		= false;
 		
@@ -55,10 +46,9 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		{
 			ohmImage[i] = new ohmTile();
 		}
-		Tween.registerAccessor(Particle.class, new ParticleAccesor());
 		Tween.registerAccessor(BackGroundController.class, new RotationAccessor());
+		//Tween.registerAccessor(ohmTile.class, new ohmTileAccessor());
 		m_tweenManager = new TweenManager();
-		particle1 = new Particle();
 		startTween();
 	}
 		
@@ -137,8 +127,6 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		
 		if(m_tweenComplete) {
 			
-			m_backGround.setRotationAngle(0);
-			startTween();
 		}
 			
 		
@@ -190,12 +178,23 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 	
 	private void startTween(){
 		
+//		Tween.to(m_backGround, RotationAccessor.ROT_ANGLE, 10.0f)
+//	    .target(360)
+//	    .ease(Linear.INOUT)
+//	    .start(m_tweenManager)
+//	    .setCallback(onComplete);
+		
 		Tween.to(m_backGround, RotationAccessor.ROT_ANGLE, 10.0f)
-	    .target(361)
-	    .ease(Linear.INOUT)
-	    .start(m_tweenManager)
-	    .setCallback(onComplete);
+		.target(360)
+		.ease(Linear.INOUT)
+		.repeat(-1, 0)
+		.start(m_tweenManager);
 		m_tweenComplete = false;
+		//.setCallback(onComplete);
+	    //.repeat(-1,0);
+		
+		
+		
 	}
 	
 	//@Override
@@ -203,7 +202,6 @@ public class ohmRenderer implements GLWallpaperService.Renderer {
 		// TODO Auto-generated method stub
 		
 		//startTween();
-	
 		
 	}
 

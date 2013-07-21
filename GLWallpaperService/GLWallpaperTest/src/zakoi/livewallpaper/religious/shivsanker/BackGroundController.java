@@ -3,8 +3,6 @@ package zakoi.livewallpaper.religious.shivsanker;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.content.res.Resources;
-import android.util.Log;
-
 
 /**
  * @author Shantanu Das
@@ -50,7 +48,7 @@ public class BackGroundController {
 		
 		gl.glColor4f(1f, 1f, 1f,1f);
 		gl.glPushMatrix();
-		gl.glTranslatef(0f,0.5f,-70f);
+		gl.glTranslatef(0f,2.5f,-70f);
 		gl.glRotatef(m_rotAngle, 0, 0, 1);
 		gl.glScalef(48, 30, 0);
 		m_layers[0].draw(gl);
@@ -58,7 +56,7 @@ public class BackGroundController {
 		
 		gl.glColor4f(1f, 1f, 1f,0.25f);
 		gl.glPushMatrix();
-		gl.glTranslatef(0f,0.5f,-70f);
+		gl.glTranslatef(0f,2.5f,-70f);
 		gl.glRotatef(360-m_rotAngle, 0, 0, 1);
 		if(!NeelkanthTile.istabletDevice)
 			gl.glScalef(48, 30, 0);
